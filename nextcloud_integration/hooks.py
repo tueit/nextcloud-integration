@@ -90,30 +90,33 @@ app_license = "MIT"
 # Document Events
 
 doc_events = {
-	"*": {
-		"on_submit": "nextcloud_integration.save_pdf.save_pdf"
-	}
+    "*": {
+        "on_submit": "nextcloud_integration.save_pdf.save_pdf"
+    },
+    "File": {
+        "after_insert": "nextcloud_integration.nextcloud.save_to_nextcloud",
+    }
 }
 
 # Scheduled Tasks
 # ---------------
 
 scheduler_events = {
-# 	"all": [
-# 		"nextcloud_integration.tasks.all"
-# 	],
-	"daily": [
-		"nextcloud_integration.nextcloud_integration.doctype.nextcloud_setting.nextcloud_setting.daily_backup"
-	],
-# 	"hourly": [
-# 		"nextcloud_integration.tasks.hourly"
-# 	],
-	"weekly": [
-		"nextcloud_integration.nextcloud_integration.doctype.nextcloud_setting.nextcloud_setting.weekly_backup"
-	],
-# 	"monthly": [
-# 		"nextcloud_integration.tasks.monthly"
-# 	]
+    # 	"all": [
+    # 		"nextcloud_integration.tasks.all"
+    # 	],
+    "daily": [
+        "nextcloud_integration.nextcloud_integration.doctype.nextcloud_setting.nextcloud_setting.daily_backup"
+    ],
+    # 	"hourly": [
+    # 		"nextcloud_integration.tasks.hourly"
+    # 	],
+    "weekly": [
+        "nextcloud_integration.nextcloud_integration.doctype.nextcloud_setting.nextcloud_setting.weekly_backup"
+    ],
+    # 	"monthly": [
+    # 		"nextcloud_integration.tasks.monthly"
+    # 	]
 }
 
 # Testing
@@ -138,4 +141,3 @@ scheduler_events = {
 # exempt linked doctypes from being automatically cancelled
 #
 # auto_cancel_exempted_doctypes = ["Auto Repeat"]
-
