@@ -88,16 +88,12 @@ app_license = "MIT"
 # }
 
 # Document Events
-# ---------------
-# Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-#	}
-# }
+doc_events = {
+	"*": {
+		"on_submit": "nextcloud_integration.save_pdf.save_pdf"
+	}
+}
 
 # Scheduled Tasks
 # ---------------

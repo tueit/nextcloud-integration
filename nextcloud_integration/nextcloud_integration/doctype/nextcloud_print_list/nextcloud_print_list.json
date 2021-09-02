@@ -1,6 +1,7 @@
 {
  "actions": [],
- "creation": "2021-08-31 05:56:17.813083",
+ "autoname": "field:doc_type",
+ "creation": "2021-09-01 00:52:49.957068",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -15,26 +16,39 @@
    "in_list_view": 1,
    "label": "DocType",
    "options": "DocType",
-   "reqd": 1
+   "reqd": 1,
+   "unique": 1
   },
   {
    "fieldname": "print_format",
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Print Format",
-   "options": "Print Format",
+   "options": "Standard",
    "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
- "istable": 1,
  "links": [],
- "modified": "2021-08-31 05:59:13.192193",
+ "modified": "2021-09-01 00:54:07.993864",
  "modified_by": "Administrator",
  "module": "Nextcloud Integration",
- "name": "NextCloud Doc List",
+ "name": "NextCloud Print List",
  "owner": "Administrator",
- "permissions": [],
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
  "sort_field": "modified",
  "sort_order": "DESC",
  "track_changes": 1
