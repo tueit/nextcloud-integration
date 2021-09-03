@@ -13,6 +13,8 @@
   "column_break_6",
   "nextcloud_url",
   "webdav_url",
+  "migrate_to_nextcloud_section",
+  "migrate_to_nextcloud",
   "backup_details_section",
   "backup_frequency",
   "backup_files",
@@ -120,13 +122,25 @@
    "fieldname": "send_email_for_successful_backup",
    "fieldtype": "Check",
    "label": "Send Email for Successful Backup"
+  },
+  {
+   "fieldname": "migrate_to_nextcloud_section",
+   "fieldtype": "Section Break",
+   "label": "Migrate to Nextcloud"
+  },
+  {
+   "default": "0",
+   "fieldname": "migrate_to_nextcloud",
+   "fieldtype": "Check",
+   "label": "Migrate to Nextcloud",
+   "reqd": 1
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2021-01-08 17:49:41.790409",
+ "modified": "2021-09-03 01:03:31.334665",
  "modified_by": "Administrator",
  "module": "Nextcloud Integration",
  "name": "Nextcloud Setting",
