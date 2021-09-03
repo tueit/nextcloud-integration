@@ -3,7 +3,7 @@ import frappe
 import urllib
 from os import path, getcwd
 import owncloud
-
+from owncloud import HTTPResponseError
 
 def save_to_nextcloud(doc, event=None):
     nextcloud_setting = frappe.get_single('Nextcloud Setting')
@@ -22,4 +22,44 @@ def save_to_nextcloud(doc, event=None):
 
     oc = owncloud.Client(cloud_url)
     oc.login(username, password)
-    oc.put_file('local.pdf', file_path)
+
+    remtote_path = ["ERPNext" , doc.attached_to_doctype , doc.attached_to_name]
+    build_directory_structure(oc, remtote_path)
+
+    remote_path_str = '/'.join(remtote_path) + '/' + doc.file_name
+    oc.put_file(remote_path_str, file_path)
+
+    if nextcloud_setting.migrate_to_nextcloud:
+      update_with_link(doc, build_link(nextcloud_setting, remote_path_str))
+
+
+def update_with_link(doc, link):
+  frappe.db.set_value(doc.doctype, doc.name, 'file_url', link)
+
+def build_directory_structure(oc, directories):
+  for index, directory in enumerate(directories):
+    folder = '/'.join(directories[0:index + 1])
+    try:
+      oc.mkdir(folder)
+    except HTTPResponseError:
+      pass
+
+def checked_for_migration(doc):
+  """
+  Migrate Stuff to NextCloud
+  """
+  return doc.migrate_to_nextcloud
+
+
+def build_link(settings, remote_file_path):
+  dav_url = urllib.parse.urljoin(settings.nextcloud_url, settings.webdav_url) 
+  return dav_url + '/' + remote_file_path
+
+
+@frappe.whitelist()
+def migrate_to_nextcloud():
+  files = frappe.get_list('File')
+
+  for f in files:
+    if f.attached_to_doctype:
+      pass

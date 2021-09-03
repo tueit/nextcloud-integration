@@ -5,11 +5,23 @@ frappe.ui.form.on('Nextcloud Setting', {
 
 	refresh: function(frm) {
 		frm.clear_custom_buttons();
+		frm.events.add_migrate_button(frm);
 		frm.events.add_backup_button(frm);
 	},
 
 	enabled: function(frm) {
 		frm.refresh();
+	},
+
+	add_migrate_button: function (frm) {
+		if (frm.doc.enabled && frm.doc.nextcloud_username && frm.doc.password) {
+			frm.add_custom_button(__("Migrate Now"), function() {
+				frappe.call({
+					method: "nextcloud_integration.nextcloud_integration.doctype.nextcloud_setting.nextcloud_setting.migrate_now",
+					freeze: true
+				});
+			}).addClass("btn-primary");
+		}
 	},
 
 	add_backup_button: function(frm) {
