@@ -17,7 +17,7 @@ frappe.ui.form.on('Nextcloud Setting', {
 		if (frm.doc.enabled && frm.doc.nextcloud_username && frm.doc.password) {
 			frm.add_custom_button(__("Migrate Now"), function() {
 				frappe.call({
-					method: "nextcloud_integration.nextcloud_integration.doctype.nextcloud_setting.nextcloud_setting.migrate_now",
+					method: "nextcloud_integration.migrate_to_nextcloud",
 					freeze: true
 				});
 			}).addClass("btn-primary");
