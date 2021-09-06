@@ -23,6 +23,9 @@ def save_to_nextcloud(doc, event=None):
     else:
       file_path = site_path + doc.file_url
 
+    if not path.exists(file_path):
+      return
+
     oc = owncloud.Client(cloud_url)
     oc.login(username, password)
 
