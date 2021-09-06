@@ -10,4 +10,5 @@ __version__ = '0.0.1'
 def migrate_to_nextcloud():
 	files = frappe.get_list('File')
 	for f in files:
-		frappe.enqueue('nextcloud_integration.nextcloud.save_to_nextcloud', doc=f)
+		doc = frappe.get_doc('File', f.name)
+		frappe.enqueue('nextcloud_integration.nextcloud.save_to_nextcloud', doc=doc)

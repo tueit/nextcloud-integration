@@ -4,6 +4,7 @@ import urllib
 from os import path, getcwd
 import owncloud
 from owncloud import HTTPResponseError
+import hashlib
 
 def save_to_nextcloud(doc, event=None):
 
@@ -16,7 +17,7 @@ def save_to_nextcloud(doc, event=None):
     cloud_url = nextcloud_setting.nextcloud_url
 
     site_path = frappe.utils.get_site_path()
-    print(doc.file_url, site_path)
+
     if not doc.is_private:
       file_path = site_path + '/public' + doc.file_url 
     else:
@@ -37,6 +38,7 @@ def save_to_nextcloud(doc, event=None):
 
 def update_with_link(doc, link):
   frappe.db.set_value(doc.doctype, doc.name, 'file_url', link)
+  frappe.db.set_value(doc.doctype, doc.name, 'content_hash', hashlib.md5(link.encode('utf8')).hexdigest())
 
 def build_directory_structure(oc, directories):
   for index, directory in enumerate(directories):
