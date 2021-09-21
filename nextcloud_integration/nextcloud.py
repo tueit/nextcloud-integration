@@ -2,8 +2,8 @@ import requests
 import frappe
 import urllib
 from os import path, getcwd
-import owncloud
-from owncloud import HTTPResponseError
+import nextcloud_integration.owncloud.owncloud as owncloud
+from nextcloud_integration.owncloud.owncloud import HTTPResponseError
 import hashlib
 
 def save_to_nextcloud(doc, event=None):
