@@ -5,6 +5,9 @@ Custom Frappe App for Nextcloud Backup
 ### Features
 This app lets you take backup of your database, config and files to your Nextcloud instance. You can configure it to take daily or weekly backups.
 
+Further features are explained here:
+https://discuss.erpnext.com/t/nextcloud-integration/65047/59?u=wojosc
+
 ### Installation
 On your site you can download and install *nextcloud-integration* app using
 
