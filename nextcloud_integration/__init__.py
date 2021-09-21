@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 import frappe
-from .nextcloud import save_to_nextcloud
+from nextcloud_integration.nextcloud import save_to_nextcloud
 
 __version__ = '0.0.1'
 
