@@ -131,6 +131,7 @@
   {
    "default": "0",
    "fieldname": "migrate_to_nextcloud",
+   "description": "When checked existing attachments will be migrated to nextcloud. All future attachments will be migrated automatically",
    "fieldtype": "Check",
    "label": "Migrate to Nextcloud",
    "reqd": 1
